@@ -5,45 +5,9 @@ var logger = require('morgan');
 
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('./utils/database/database');
+const { createAssociations, syncDB } = require('./models/associations');
 
-const Crebo = require('./models/crebo');
-Crebo
-    .sync(
-        { force: true }
-    )
-    .then(
-        () => {}
-    )
-    .catch(
-        err => console.log(err)
-    )
-
-const User = sequelize.define('User', {
-    // Model attributes are defined here
-    id: {
-        type: DataTypes.UUID,
-        defaultValue: Sequelize.UUIDV4,
-        allowNull: false,
-        primaryKey: true
-    },
-    firstName: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    lastName: {
-        type: DataTypes.STRING
-        // allowNull defaults to true
-    }
-}, {
-    // Other model options go here
-});
-
-const mark = User.build(
-    {
-        firstName: 'Mark',
-        lastName: 'Dackus'
-    }
-)
+createAssociations();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -60,22 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-User
-    .sync(
-        { force: true }
-    )
-    .then(
-        () => {
-            // mark.save()
-            // .then(
-            //     () => {
-            //         console.log(User)
-            //     }
-            // )
-            // .catch(
-            //     err => console.log(err)
-            // )
-        }
-    )
+syncDB(true);
 
 module.exports = app;

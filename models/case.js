@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../utils/database/database');
 
-const Crebo = sequelize.define('crebo', {
+const Case = sequelize.define('case', {
     id: {
         type: DataTypes.UUID,
         defaultValue: Sequelize.UUIDV4,
@@ -17,18 +17,9 @@ const Crebo = sequelize.define('crebo', {
         type: DataTypes.STRING(100),
         allowNull: false,
         unique: true
-    },
-    description: {
-        type: DataTypes.TEXT('tiny')
-    },
-    sbblink: {
-        type: DataTypes.STRING
-    },
-    kdpdflink: {
-        type: DataTypes.STRING
     }
 },{
-    tableName: 'crebo'
+    tableName: 'case'
 })
 
-module.exports = Crebo;
+module.exports = Case;
