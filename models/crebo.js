@@ -13,13 +13,16 @@ const Crebo = sequelize.define('crebo', {
         allowNull: false,
         unique: true
     },
+    level: {
+        type: DataTypes.INTEGER
+    },
     name: {
         type: DataTypes.STRING(100),
         allowNull: false,
         unique: true
     },
     description: {
-        type: DataTypes.TEXT('tiny')
+        type: DataTypes.TEXT('long')
     },
     sbblink: {
         type: DataTypes.STRING

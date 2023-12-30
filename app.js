@@ -1,13 +1,36 @@
- var express = require('express');
+var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('./utils/database/database');
-const { createAssociations, syncDB } = require('./models/associations');
+const setAssociations = require('./models/associations');
+const syncDB = require('./models/sync');
 
-createAssociations();
+// Import all the models needed for the associations.
+const Case = require('./models/case');
+const Crebo = require('./models/crebo');
+const Kerntaak = require('./models/kerntaak');
+const Werkproces = require('./models/werkproces');
+
+const { createCrebo } = require('./data/crebo');
+const { createCase } = require('./data/case');
+
+setAssociations();
+
+// // createAssociations();
+// // A Case (dossier) has more then one educations (crebos)
+// Case.hasMany(Crebo);
+// Crebo.belongsTo(Case);
+
+// // A Crebo (education) has more then one kerntaken.
+// Crebo.hasMany(Kerntaak);
+// Kerntaak.belongsTo(Crebo);
+
+// // A kerntaak has more then one workprocesses (werkprocessen).
+// Kerntaak.hasMany(Werkproces);
+// Werkproces.belongsTo(Kerntaak);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -24,6 +47,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-syncDB(true);
+syncDB(false);
+
+// createCase();
+
+// createCrebo();
 
 module.exports = app;
