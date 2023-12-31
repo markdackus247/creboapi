@@ -19,19 +19,6 @@ const { createCase } = require('./data/case');
 
 setAssociations();
 
-// // createAssociations();
-// // A Case (dossier) has more then one educations (crebos)
-// Case.hasMany(Crebo);
-// Crebo.belongsTo(Case);
-
-// // A Crebo (education) has more then one kerntaken.
-// Crebo.hasMany(Kerntaak);
-// Kerntaak.belongsTo(Crebo);
-
-// // A kerntaak has more then one workprocesses (werkprocessen).
-// Kerntaak.hasMany(Werkproces);
-// Werkproces.belongsTo(Kerntaak);
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const e = require('express');
@@ -49,7 +36,7 @@ app.use('/users', usersRouter);
 
 syncDB(false);
 
-// createCase();
+createCase();
 
 // createCrebo();
 

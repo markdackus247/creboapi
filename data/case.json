@@ -1,0 +1,17 @@
+[
+    {
+        "id": "a10e60d8-25ab-468e-9df2-24fa253bdeb6",
+        "code": "23244",
+        "name": "IT systems and devices"
+    },
+    {
+        "id": "d03c6041-bb02-49ea-a60b-1a7f7661b876",
+        "code": "23246",
+        "name": "ICT support"
+    },    
+    {
+        "id": "774cfc41-a423-4bcb-9843-af0407b1ae8c",
+        "code": "23243",
+        "name": "Software development"
+    }  
+]
